@@ -17,3 +17,5 @@ customer_loyalty AS (
     FROM customer_orders
 )
 SELECT * FROM customer_loyalty
+
+-- this is just testing
