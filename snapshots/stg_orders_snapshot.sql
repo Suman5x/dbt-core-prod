@@ -3,7 +3,7 @@
 {{
     config(
       target_database='rawdata_db',  -- Change this to your actual target database
-      target_schema='snapshot'
+      target_schema='snapshot',
        -- Assuming 'o_orderkey' is the primary key in your orders model
 
       strategy='timestamp'
