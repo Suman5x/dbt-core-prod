@@ -21,4 +21,4 @@ customer_loyalty AS (
 )
 SELECT * FROM customer_loyalty
 
--- this is just testing
+-- this is just testingdfadsa
