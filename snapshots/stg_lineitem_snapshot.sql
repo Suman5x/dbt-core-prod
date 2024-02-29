@@ -1,5 +1,15 @@
-{% snapshot stg_orders_snapshot %}
+{% snapshot lineitem_snapshot %}
 
-SELECT * FROM {{ ref('stg_customer') }}
+{{
+    config(
+      target_database='rawdata_db',
+      target_schema='snapshots',
+      unique_key='id',
+      strategy='timestamp',
+      updated_at='updated_at',
+    )
+}}
+
+SELECT * FROM {{ ref('stg_lineitem') }}
 
 {% endsnapshot %}
