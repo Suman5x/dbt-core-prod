@@ -34,7 +34,6 @@ exposures:
     url: "http://yourcompany.bi.tool/dashboards/customer_insights"
     depends_on:
       - ref('int_customer_segmentation')
-      - ref('int_customer_spend')
       - ref('int_customer_loyalty')
     owner:
       name: "Marketing Manager"
