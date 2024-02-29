@@ -1,14 +1,16 @@
-{% snapshot stg_lineitem_snapshot %}
+{% snapshot stg_orders_snapshot %}
 
 {{
     config(
-        target_schema='snapshot',
-        unique_key='composite_key',  -- Assuming there's no single PK, we might need to create a composite key
-        strategy='check',
-        check_cols=['l_orderkey', 'l_partkey', 'l_suppkey', 'l_linenumber']  -- List of columns to check for changes
+      target_database='rawdata_db',  -- Change this to your actual target database
+      target_schema='snapshot'
+       -- Assuming 'o_orderkey' is the primary key in your orders model
+
+      strategy='timestamp'
+       -- Replace 'o_orderdate' with the actual timestamp column if different
     )
 }}
 
-SELECT *, CONCAT(l_orderkey, '-', l_partkey, '-', l_suppkey, '-', l_linenumber) AS composite_key FROM {{ ref('stg_lineitem') }}
+SELECT * FROM {{ ref('stg_customer') }}
 
 {% endsnapshot %}

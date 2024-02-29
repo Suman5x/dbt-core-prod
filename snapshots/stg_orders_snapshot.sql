@@ -1,12 +1,16 @@
 {% snapshot stg_orders_snapshot %}
 
-    {{ config(
-        target_schema='snapshot',
-        unique_key='o_orderkey',  -- Primary key of the orders table
-        strategy='timestamp',
-        updated_at='valid_to'  -- This should be a column in your source data indicating when the record was last updated
-    ) }}
+{{
+    config(
+      target_database='rawdata_db',  -- Change this to your actual target database
+      target_schema='snapshot'
+       -- Assuming 'o_orderkey' is the primary key in your orders model
 
-    SELECT * FROM {{ ref('stg_orders') }}
+      strategy='timestamp'
+       -- Replace 'o_orderdate' with the actual timestamp column if different
+    )
+}}
+
+SELECT * FROM {{ ref('stg_order') }}
 
 {% endsnapshot %}

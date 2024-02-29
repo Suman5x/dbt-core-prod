@@ -1,11 +1,13 @@
-{% snapshot stg_supplier_snapshot %}
+{% snapshot stg_orders_snapshot %}
 
 {{
     config(
-        target_schema='snapshot',
-        unique_key='s_suppkey',  -- Primary key of the supplier table
-        strategy='timestamp',
-        updated_at='valid_to'  -- System column managed by dbt
+      target_database='rawdata_db',  -- Change this to your actual target database
+      target_schema='snapshot'
+       -- Assuming 'o_orderkey' is the primary key in your orders model
+
+      strategy='timestamp'
+       -- Replace 'o_orderdate' with the actual timestamp column if different
     )
 }}
 
