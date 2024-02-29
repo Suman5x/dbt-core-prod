@@ -1,4 +1,6 @@
 -- models/staging/stg_customers.sql
+{{ config(materialized='view', tags=['staging', 'customers']) }}
+
 WITH source AS (
     SELECT * FROM {{ source('tpch', 'customer') }}
 )

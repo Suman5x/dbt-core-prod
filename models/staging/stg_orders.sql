@@ -1,4 +1,6 @@
 -- models/staging/stg_orders.sql
+{{ config(materialized='incremental', unique_key='o_orderkey', tags=['staging', 'orders']) }}
+
 WITH source AS (
     SELECT * FROM {{ source('tpch', 'orders') }}
 )

@@ -1,3 +1,6 @@
+{{ config(materialized='view', tags=['staging', 'supplier']) }}
+
+
 WITH customer_orders AS (
     SELECT
         o_custkey,
