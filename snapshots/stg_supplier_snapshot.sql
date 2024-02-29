@@ -4,7 +4,7 @@
     config(
       target_database='rawdata_db',
       target_schema='snapshots',
-      unique_key='id',
+      unique_key='s_suppkey',
       strategy='timestamp',
       updated_at='updated_at',
     )
