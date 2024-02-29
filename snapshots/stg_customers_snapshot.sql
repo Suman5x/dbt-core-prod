@@ -2,7 +2,7 @@
 
 {{
     config(
-      target_database='rawdat_db',
+      target_database='rawdata_db',
       target_schema='snapshots',
       unique_key='id',
       strategy='timestamp',
