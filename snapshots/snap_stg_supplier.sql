@@ -14,3 +14,5 @@ SELECT * FROM {{ ref('stg_supplier') }}
 
 {% endsnapshot %}
 
+-- testing
+
