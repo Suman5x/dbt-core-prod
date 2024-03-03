@@ -1,6 +1,6 @@
 {{ config(materialized='view', tags=['staging', 'supplier']) }}
 
-
+--testing the model for SlimCI
 WITH order_values AS (
     SELECT
         o_orderkey,
