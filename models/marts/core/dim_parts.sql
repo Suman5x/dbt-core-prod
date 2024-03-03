@@ -1,3 +1,5 @@
+--TEsting slim CI
+
 {{
     config(
         materialized = 'table'
