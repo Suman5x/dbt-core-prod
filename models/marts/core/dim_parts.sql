@@ -1,3 +1,4 @@
+--check slimCI
 {{
     config(
         materialized = 'table'
