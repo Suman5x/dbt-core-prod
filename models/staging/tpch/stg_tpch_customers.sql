@@ -1,8 +1,6 @@
 /*  This is a model config block. With it, you can create model specific configurations and override the configurations set on the dbt_project.yml. 
 CI job 2
 
-
-
 */
 {{ config(
     materialized="table",
