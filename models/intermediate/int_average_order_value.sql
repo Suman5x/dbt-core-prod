@@ -1,6 +1,7 @@
 {{ config(materialized='view', tags=['staging', 'supplier']) }}
 
 
+
 WITH order_values AS (
     SELECT
         o_orderkey,
