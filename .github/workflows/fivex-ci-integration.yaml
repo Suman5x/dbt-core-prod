@@ -11,7 +11,8 @@ jobs:
     - name: Call External API
       id: api_call
       run: |
-        response=$(curl --write-out "%{http_code}" --silent --output /dev/null -H "apiKey: eY3VfjsPDaOwhyY1VOzNmw==" "http://127.0.0.1:80/your/api/endpoint")
+        PR_NUMBER=${{ github.event.pull_request.number }}
+        response=$(curl --write-out "%{http_code}" --silent --output /dev/null -H "apiKey: eY3VfjsPDaOwhyY1VOzNmw==" "http://127.0.0.1:80/jobs/v1/f7bdee98-843e-4e3d-ad7a-79af71962fbd/jobs/ci/$PR_NUMBER/run")
         echo "API Response Code: $response"
         if [ "$response" -ne 200 ]; then
           echo "::error::API check failed with response code $response"
