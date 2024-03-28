@@ -4,24 +4,19 @@ config-version: 2
 
 profile: 'default'
 
-source-paths: ["models"]
-analysis-paths: ["analysis"]
+model-paths: ["models"]
+analysis-paths: ["analyses"]
 test-paths: ["tests"]
-data-paths: ["data"]
+seed-paths: ["seeds"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
 
 target-path: "target"  # Directory where dbt will store compiled SQL files and other artifacts.
 clean-targets:  # Directories dbt will clean when you run dbt clean.
   - "target"
-  - "dbt_modules"
+  - "dbt_packages"
 
 models:
   tpch_project:
     # Applies to all files under models/
     +materialized: view  # Change to 'table' if you prefer materializing as tables.
-    staging:
-      +materialized: view
-      +schema: staging  # Prefix added to the schema, models will be in 'staging' schema.
-      tpch:
-        +schema: tpch  # Models under models/tpch will be in 'tpch' schema.
