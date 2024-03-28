@@ -1,0 +1,22 @@
+name: External API Check
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  api-check:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Call External API
+      id: api_call
+      run: |
+        response=$(curl --write-out "%{http_code}" --silent --output /dev/null -H "apiKey: eY3VfjsPDaOwhyY1VOzNmw==" "http://127.0.0.1:80/your/api/endpoint")
+        echo "API Response Code: $response"
+        if [ "$response" -ne 200 ]; then
+          echo "::error::API check failed with response code $response"
+          exit 1
+        fi
+    - name: API check succeeded
+      if: success()
+      run: echo "API check succeeded"
