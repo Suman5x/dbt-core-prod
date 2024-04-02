@@ -49,7 +49,6 @@ sources:
           - name: o_shippriority
             description: numeric representation of the shipping priority, zero being the default
           - name: o_comment
-            description: '{{ doc("comment") }}'
           
       - name: customer
         description: main customer table
@@ -74,7 +73,6 @@ sources:
           - name: c_mktsegment
             description: market segment of the customer
           - name: c_comment
-            description: '{{ doc("comment") }}'
 
       - name: lineitem
         description: main lineitem table
@@ -122,7 +120,6 @@ sources:
           - name: l_shipmode
             description: method of shipping
           - name: l_comment
-            description: '{{ doc("comment") }}'
 
       - name: nation
         description: nation mapping
@@ -143,7 +140,6 @@ sources:
                   to: source('tpch', 'region')
                   field: r_regionkey
           - name: n_comment
-            description: '{{ doc("comment") }}'
 
       - name: part
         description: main part table
@@ -170,7 +166,6 @@ sources:
           - name: p_retailprice
             description: raw retail price
           - name: p_comment
-            description: '{{ doc("comment") }}'
 
       - name: partsupp
         description: main part supplier table
@@ -192,7 +187,6 @@ sources:
           - name: ps_supplycost
             description: raw cost 
           - name: ps_comment
-            description: '{{ doc("comment") }}'
 
       - name: region
         description: region mapping
@@ -207,7 +201,6 @@ sources:
           - name: r_name
             description: region name
           - name: r_comment
-            description: '{{ doc("comment") }}'
 
       - name: supplier
         description: main supplier table
@@ -234,4 +227,3 @@ sources:
           - name: s_acctbal
             description: raw account balance
           - name: s_comment
-            description: '{{ doc("comment") }}'
