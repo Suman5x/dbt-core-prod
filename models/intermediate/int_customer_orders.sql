@@ -8,4 +8,5 @@ WITH customer_orders AS (
     LEFT JOIN {{ ref('stg_orders') }} o ON c.c_custkey = o.o_custkey
     GROUP BY c.c_custkey
 )
+
 SELECT * FROM customer_orders

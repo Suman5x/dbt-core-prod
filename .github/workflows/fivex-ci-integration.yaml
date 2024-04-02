@@ -1,15 +1,17 @@
-name: External API Check
+name: PR Workflow
 
 on:
   pull_request:
     types: [opened, synchronize]
+  pull_request_target:
+    types: [closed]
 
 jobs:
-  api-check:
+  handle-pr:
     runs-on: ubuntu-latest
     steps:
-    - name: Call External API
-      id: api_call
+    - name: Call External API on PR Opened/Updated
+      if: github.event_name == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'synchronize')
       run: |
         PR_NUMBER=${{ github.event.pull_request.number }}
         response=$(curl --write-out "%{http_code}" --silent --output /dev/null -H "apiKey: eY3VfjsPDaOwhyY1VOzNmw==" "http://127.0.0.1:80/jobs/v1/f7bdee98-843e-4e3d-ad7a-79af71962fbd/jobs/ci/$PR_NUMBER/run")
@@ -18,6 +20,9 @@ jobs:
           echo "::error::API check failed with response code $response"
           exit 1
         fi
-    - name: API check succeeded
-      if: success()
-      run: echo "API check succeeded"
+
+    - name: Call External API on PR Merge
+      if: github.event_name == 'pull_request_target' && github.event.action == 'closed' && github.event.pull_request.merged == true
+      run: |
+        PR_NUMBER=${{ github.event.pull_request.number }}
+        curl --location --request DELETE "http://127.0.0.1:80/jobs/v1/f7bdee98-843e-4e3d-ad7a-79af71962fbd/jobs/ci/$PR_NUMBER" --header "apiKey: eY3VfjsPDaOwhyY1VOzNmw=="
