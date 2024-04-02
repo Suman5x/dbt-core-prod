@@ -6,7 +6,6 @@ sources:
     schema: tpch_sf1  # This might be 'public' or another schema where your TPC-H tables are located.
     tables:
       - name: customer
-      - name: orders
       - name: lineitem
       - name: part
       - name: supplier
