@@ -10,6 +10,8 @@ WITH customer_orders AS (
         COUNT(*) AS orders_count
     FROM {{ ref('stg_orders') }}
     GROUP BY o_custkey
+
+    
 ),
 customer_loyalty AS (
     SELECT
